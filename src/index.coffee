@@ -16,6 +16,7 @@ stringToRegex = (s) ->
 
 toRegex = (s) ->
   s = s.trim()
+  return unless s
 
   if isRegexString s
     stringToRegex s

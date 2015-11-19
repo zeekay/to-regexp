@@ -40,3 +40,9 @@ describe 'to-regexp', ->
       for re in regexes
         regexp = toRegExp re
         regexp.toString().should.equal re
+
+    it 'should ignore empty arrays and/or non-sensical arguments', ->
+      should.not.exist toRegExp []
+      should.not.exist toRegExp ''
+      should.not.exist toRegExp null
+      should.not.exist toRegExp()
