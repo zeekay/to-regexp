@@ -1,6 +1,6 @@
 {
   "name": "to-regexp",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Convert globs, strings, and arrays to a single RegExp.",
   "main": "lib/",
   "dependencies": {
