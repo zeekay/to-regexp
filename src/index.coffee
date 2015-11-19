@@ -25,6 +25,7 @@ toRegex = (s) ->
 module.exports = (patterns, opts = {}) ->
   return toRegex patterns if isString patterns
   return patterns if isRegex patterns
+  return unless patterns?
 
   unless isArray patterns
     throw new Error "Expected Array, RegExp or String found '#{patterns}'"
