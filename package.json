@@ -18,6 +18,7 @@
     "shortcake": "^0.3.0"
   },
   "scripts": {
+    "prepublish": "cake build",
     "test": "cake test"
   },
   "repository": {
