@@ -3,10 +3,10 @@ isArray     = require 'is-array'
 isRegex     = require 'is-regexp'
 isString    = require 'is-string'
 
-endOfRegex = /\/(\w+)?$/
+endOfRegex = /\/([gimy]+)?$/
 
 isRegexString = (s) ->
-  (s.charAt 0) == '/' and endOfRegex.test s
+  (s.charAt 0) == '/' and (endOfRegex.test s)
 
 stringToRegex = (s) ->
   match = endOfRegex.exec s
@@ -35,9 +35,10 @@ module.exports = (patterns, opts = {}) ->
   regexes = []
   for pattern in patterns
     if isString pattern
-      if pattern.trim()
-        regexes.push toRegex pattern
-    else if not isRegex pattern
+      regexes.push toRegex pattern if pattern.trim()
+    else if isRegex pattern
+      regexes.push pattern
+    else
       throw new Error "Expected RegExp or String found '#{pattern}'"
 
   return unless regexes.length > 0

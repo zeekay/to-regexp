@@ -46,3 +46,7 @@ describe 'to-regexp', ->
       should.not.exist toRegExp ''
       should.not.exist toRegExp null
       should.not.exist toRegExp()
+
+    it 'should merge array of regular expressions/globs', ->
+      re = toRegExp [ /foo/, /bar/, /baz.*/ ]
+      re.toString().should.be.eq '/foo|bar|baz.*/'
