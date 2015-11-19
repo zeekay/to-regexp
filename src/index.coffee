@@ -30,6 +30,8 @@ module.exports = (patterns, opts = {}) ->
   unless isArray patterns
     throw new Error "Expected Array, RegExp or String found '#{patterns}'"
 
+  return unless patterns.length > 0
+
   # convert every pattern to RegExp
   for pattern, i in patterns
     if isString pattern
