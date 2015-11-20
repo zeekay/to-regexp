@@ -15,7 +15,8 @@
     "coffee-script": "^1.10.0",
     "executive": "^0.5.1",
     "mocha": "^2.3.4",
-    "shortcake": "^0.3.0"
+    "shortcake": "^0.3.0",
+    "source-map-support": "^0.3.3"
   },
   "scripts": {
     "prepublish": "cake build",
