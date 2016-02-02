@@ -1,46 +1,46 @@
-globToRegex = require 'glob-to-regexp'
-isArray     = require 'is-array'
-isRegex     = require 'is-regexp'
-isString    = require 'is-string'
+globToRegExp = require 'glob-to-regexp'
+isArray      = require 'is-array'
+isRegExp     = require 'is-regexp'
+isString     = require 'is-string'
 
-endOfRegex = /\/([gimy]+)?$/
+endOfRegExp = /\/([gimy]+)?$/
 
-isRegexString = (s) ->
-  (s.charAt 0) == '/' and (endOfRegex.test s)
+isRegExpString = (s) ->
+  (s.charAt 0) == '/' and (endOfRegExp.test s)
 
-stringToRegex = (s) ->
-  match = endOfRegex.exec s
+stringToRegExp = (s) ->
+  match = endOfRegExp.exec s
   flags = match[1]
   index = match.index
   new RegExp (s.substring 1, index), flags
 
-toRegex = (s) ->
+toRegExp = (s) ->
   s = s.trim()
   return unless s
 
-  if isRegexString s
-    stringToRegex s
+  if isRegExpString s
+    stringToRegExp s
   else
-    globToRegex s, extended: true
+    globToRegExp s, extended: true
 
 module.exports = (patterns, opts = {}) ->
-  return toRegex patterns if isString patterns
-  return patterns if isRegex patterns
+  return toRegExp patterns if isString patterns
+  return patterns if isRegExp patterns
   return unless patterns?
 
   unless isArray patterns
     throw new Error "Expected Array, RegExp or String found '#{patterns}'"
 
   # convert every pattern to RegExp
-  regexes = []
+  regexps = []
   for pattern in patterns
     if isString pattern
-      regexes.push toRegex pattern if pattern.trim()
-    else if isRegex pattern
-      regexes.push pattern
+      regexps.push toRegExp pattern if pattern.trim()
+    else if isRegExp pattern
+      regexps.push pattern
     else
       throw new Error "Expected RegExp or String found '#{pattern}'"
 
-  return unless regexes.length > 0
+  return unless regexps.length > 0
 
-  new RegExp (re.source for re in regexes).join '|'
+  new RegExp (re.source for re in regexps).join '|'
