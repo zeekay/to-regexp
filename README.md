@@ -1,4 +1,6 @@
 # to-regexp
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/zeekay/to-regexp.svg)](https://greenkeeper.io/)
 Turns wild card-style glob (`'foo*'`) and stringified regular expressions (`'/foo.*/'`) into RegExp objects.
 
 ## Install
